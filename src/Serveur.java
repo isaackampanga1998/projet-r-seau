@@ -4,24 +4,50 @@ import java.util.concurrent.*;
 
 public class Serveur {
 
-    private final int PORT = 1234; // Port pour la communication
+    //Attribut socket
+    private ServerSocket serverSocket;
 
-    public void demarrer() {
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
-            System.out.println("Serveur en attente de connexion...");
+    //Constructeur
+    public Serveur(ServerSocket serverSocket) {
+        this.serverSocket = serverSocket;
+    }
 
-            // Utilisation d'un pool de threads pour gérer plusieurs connexions simultanées
-            ExecutorService pool = Executors.newFixedThreadPool(1000);
+    //Méthode pour démarrer le serveur
+    public void demarrerServeur() {
 
-            while (true) {
-                Socket clientSocket = serverSocket.accept();
-                System.out.println("Connexion établie avec un client.");
+        try {
 
-                // Assigner la connexion à un thread du pool
-                pool.execute(new GestionnaireClient(clientSocket));
+            //Boucle pour faire rouler le serveur jusqu'à la fermeture du socket
+            while (!serverSocket.isClosed()) {
+
+                //Le socket attend une connexion
+                Socket socket = serverSocket.accept();
+                System.out.println("Un nouveau client s'est connecté");
+
+                //Permet le multithreading des clients
+                GestionnaireClient clientHandler = new GestionnaireClient(socket);
+                Thread thread = new Thread(clientHandler);
+                thread.start();
+            }
+        } catch (IOException e) {
+            fermerSocketServeur();
+        }
+    }
+
+    //Méthode qui ferme le socket dans le cas d'une erreur
+    public void fermerSocketServeur() {
+        try {
+            if(serverSocket != null) {
+                serverSocket.close();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        ServerSocket serverSocket = new ServerSocket(1234);
+        Serveur serveur = new Serveur(serverSocket);
+        serveur.demarrerServeur();
     }
 }
