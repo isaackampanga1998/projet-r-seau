@@ -24,7 +24,7 @@ public class Plateau {
         // Vérifier si les coordonnées sont valides
         if (x >= 0 && x < taille && y >= 0 && y < taille) {
             // Placer la mise sur la grille
-            // Cette fonctionnalité sera implémentée plus tard
+            grille[x][y] = 'M'; // 'M' représente la mise du joueur
         } else {
             System.out.println("Coordonnées invalides.");
         }
