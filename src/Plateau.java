@@ -31,16 +31,28 @@ public class Plateau {
     }
 
     public void calculerPoints(Joueur joueur, int x, int y) {
-
-    // Méthode pour calculer les points du joueur en fonction de sa mise
-    // Cette fonctionnalité sera implémentée plus tard
-    // Exemple d'implémentation simplifiée :
-    if (grille[x][y] == 'C') {
-        joueur.ajusterPoints(10); // Joueur trouve l'emplacement exact
-    } else {
-        joueur.ajusterPoints(-1); // Joueur perd un point car il n'a pas trouvé l'emplacement exact
+        // Méthode pour calculer les points du joueur en fonction de sa mise
+        if (grille[x][y] == 'C') {
+            joueur.ajusterPoints(10); // Joueur trouve l'emplacement exact
+        } else if (estCaseAdjacente(x, y)) {
+            joueur.ajusterPoints(2); // Joueur est sur une case adjacente
+        } else {
+            joueur.ajusterPoints(-1); // Joueur perd un point car il n'a pas trouvé l'emplacement exact
+        }
     }
-}
+
+    private boolean estCaseAdjacente(int x, int y) {
+        // Vérifier si la case aux coordonnées (x, y) est adjacente à la position du chat
+        // Cette méthode vérifie les 8 cases autour de la position du chat
+        for (int i = x - 1; i <= x + 1; i++) {
+            for (int j = y - 1; j <= y + 1; j++) {
+                if (i >= 0 && i < taille && j >= 0 && j < taille && grille[i][j] == 'C') {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public void afficherGrille() {
         // Méthode pour afficher la grille du plateau
