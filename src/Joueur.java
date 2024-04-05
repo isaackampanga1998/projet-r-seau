@@ -50,4 +50,27 @@ public class Joueur {
         throw new UnsupportedOperationException("Unimplemented method 'getNom'");
     }
 }
+ public void jouer() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("C'est à votre tour de jouer, " + nom + " !");
+        System.out.println("Entrez les coordonnées (x, y) où vous pensez que le chat va dormir :");
+        System.out.print("Coordonnée x : ");
+        int x = scanner.nextInt();
+        System.out.print("Coordonnée y : ");
+        int y = scanner.nextInt();
+        
+        // Simulation de la mise sur la grille
+        int[] coordonnees = {x, y};
+        miseSurGrille(coordonnees);
 
+        // Simulation du calcul des points
+        if (x == 2 && y == 2) {
+            ajusterPoints(10);
+        } else {
+            ajusterPoints(-1);
+        }
+
+        // Affichage des points mis à jour
+        System.out.println("Points de " + nom + ": " + getPoints());
+    }
+}
