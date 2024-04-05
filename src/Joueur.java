@@ -9,10 +9,18 @@ public class Joueur {
         this.vies = 3; // Début avec 3 vies
     }
 
-    public void miseSurGrille(int[] coordonnees) {
-        // Méthode pour placer une mise sur la grille
-        // Cette fonctionnalité sera implémentée plus tard
+   public void miseSurGrille(int[] coordonnees) {
+    // Méthode pour placer une mise sur la grille
+    
+    // Vérifier si les coordonnées sont valides
+    if (coordonnees[0] >= 0 && coordonnees[0] < tailleGrille && coordonnees[1] >= 0 && coordonnees[1] < tailleGrille) {
+        // Placer la mise sur la grille
+        grille[coordonnees[0]][coordonnees[1]] = 'X'; // 'X' représente la mise du joueur sur la grille
+        System.out.println(nom + " a placé une mise sur la grille aux coordonnées : (" + coordonnees[0] + ", " + coordonnees[1] + ")");
+    } else {
+        System.out.println("Coordonnées invalides.");
     }
+}
 
     public void ajusterPoints(int points) {
         // Méthode pour ajuster les points du joueur
