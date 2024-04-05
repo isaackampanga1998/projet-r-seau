@@ -33,9 +33,12 @@ public class Joueur {
     }
 
     public void envoyerMessage(String message) {
-        // Méthode pour envoyer un message aux autres joueurs
-        // Cette fonctionnalité sera implémentée plus tard
-    }
+    // Méthode pour envoyer un message aux autres joueurs
+    // Pour l'instant, nous utilisons la communication déjà mise en place à l'aide de la classe Client
+    // Nous créons un client fictif pour envoyer le message, mais en réalité, cette méthode sera appelée lorsqu'un joueur veut envoyer un message aux autres joueurs
+    Client client = new Client(null, nom); // Création d'un client fictif pour envoyer un message
+    client.envoyerMessage(message);
+}
 
     public String getPoints() {
         // TODO Auto-generated method stub
