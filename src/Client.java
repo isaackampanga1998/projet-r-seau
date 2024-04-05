@@ -65,10 +65,10 @@ public class Client {
     }
 
     //Méthode pour fermer la connexion
-    public void toutFermer(Socket socket, BufferedWriter bufferedWriter, BufferedReader bufferedReader) {
+    public void toutFermer(Socket socket, BufferedWriter bufferedWriter, BufferedReader bufferedReader2) {
         try {
-            if(bufferedReader != null) {
-                bufferedReader.close();
+            if(bufferedReader2 != null) {
+                bufferedReader2.close();
             }
             if(bufferedWriter != null) {
                 bufferedWriter.close();
@@ -89,6 +89,16 @@ public class Client {
         Client client = new Client(socket, nomUtilisateur);
         client.ecouteMessage();
         client.envoyerMessage();
+    }
+
+    public BufferedWriter getBufferedWriter() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getBufferedWriter'");
+    }
+
+    public void toutFermer(Socket socket2, BufferedWriter bufferedWriter2, BufferedWriter bufferedWriter3) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'toutFermer'");
     }
 }
 

@@ -28,5 +28,15 @@ public class Joueur {
         // Méthode pour envoyer un message aux autres joueurs
         // Cette fonctionnalité sera implémentée plus tard
     }
+
+    public String getPoints() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPoints'");
+    }
+
+    public String getNom() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNom'");
+    }
 }
 
